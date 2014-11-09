@@ -20,7 +20,7 @@
     <Optimize>false</Optimize>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LIBOWIN_PUBLIC</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>

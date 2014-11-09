@@ -891,7 +891,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Options used to create a new cookie.
     /// </summary>
-    public class CookieOptions
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class CookieOptions
     {
         /// <summary>
         /// Creates a default cookie with a path of '/'.
@@ -935,7 +940,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Contains the parsed form values.
     /// </summary>
-    public class FormCollection : ReadableStringCollection, IFormCollection
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class FormCollection : ReadableStringCollection, IFormCollection
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Microsoft.Owin.FormCollection" /> class.
@@ -949,7 +959,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Represents a wrapper for owin.RequestHeaders and owin.ResponseHeaders.
     /// </summary>
-    public class HeaderDictionary : IHeaderDictionary
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class HeaderDictionary : IHeaderDictionary
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Microsoft.Owin.HeaderDictionary" /> class.
@@ -1227,7 +1242,12 @@ namespace LibOwin.Owin
     /// Represents the host portion of a Uri can be used to construct Uri's properly formatted and encoded for use in
     /// HTTP headers.
     /// </summary>
-    public struct HostString : IEquatable<HostString>
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    struct HostString : IEquatable<HostString>
     {
         private readonly string _value;
 
@@ -1413,13 +1433,23 @@ namespace LibOwin.Owin
     /// <summary>
     /// Contains the parsed form values.
     /// </summary>
-    public interface IFormCollection : IReadableStringCollection
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IFormCollection : IReadableStringCollection
     {}
 
     /// <summary>
     /// Represents a wrapper for owin.RequestHeaders and owin.ResponseHeaders.
     /// </summary>
-    public interface IHeaderDictionary : IReadableStringCollection, IDictionary<string, string[]>
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IHeaderDictionary : IReadableStringCollection, IDictionary<string, string[]>
     {
         /// <summary>
         /// Get or sets the associated value from the collection as a single string.
@@ -1482,7 +1512,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// This wraps OWIN environment dictionary and provides strongly typed accessors.
     /// </summary>
-    public interface IOwinContext
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IOwinContext
     {
         /// <summary>
         /// Gets a wrapper exposing request specific properties.
@@ -1529,7 +1564,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// This wraps OWIN environment dictionary and provides strongly typed accessors.
     /// </summary>
-    public interface IOwinRequest
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IOwinRequest
     {
         /// <summary>
         /// Gets the OWIN environment.
@@ -1708,7 +1748,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// This wraps OWIN environment dictionary and provides strongly typed accessors.
     /// </summary>
-    public interface IOwinResponse
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IOwinResponse
     {
         /// <summary>
         /// Gets the OWIN environment.
@@ -1876,7 +1921,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Accessors for headers, query, forms, etc.
     /// </summary>
-    public interface IReadableStringCollection : IEnumerable<KeyValuePair<string, string[]>>
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IReadableStringCollection : IEnumerable<KeyValuePair<string, string[]>>
     {
         /// <summary>
         /// Get the associated value from the collection.  Multiple values will be merged.
@@ -2079,7 +2129,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// This wraps OWIN environment dictionary and provides strongly typed accessors.
     /// </summary>
-    public class OwinContext : IOwinContext
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class OwinContext : IOwinContext
     {
         /// <summary>
         /// Create a new context with only request and response header collections.
@@ -2167,7 +2222,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// This wraps OWIN environment dictionary and provides strongly typed accessors.
     /// </summary>
-    public class OwinRequest : IOwinRequest
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class OwinRequest : IOwinRequest
     {
         /// <summary>
         /// Create a new context with only request and response header collections.
@@ -2538,7 +2598,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// This wraps OWIN environment dictionary and provides strongly typed accessors.
     /// </summary>
-    public class OwinResponse : IOwinResponse
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class OwinResponse : IOwinResponse
     {
         /// <summary>
         /// Create a new context with only request and response header collections.
@@ -2865,7 +2930,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Provides correct escaping for Path and PathBase values when needed to reconstruct a request or redirect URI string
     /// </summary>
-    public struct PathString : IEquatable<PathString>
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    struct PathString : IEquatable<PathString>
     {
         private static readonly Func<string, string> EscapeDataString = Uri.EscapeDataString;
 
@@ -3128,7 +3198,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Provides correct handling for QueryString value when needed to reconstruct a request or redirect URI string
     /// </summary>
-    public struct QueryString : IEquatable<QueryString>
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    struct QueryString : IEquatable<QueryString>
     {
         /// <summary>
         /// Represents the empty query string. This field is read-only.
@@ -3288,7 +3363,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// Accessors for query, forms, etc.
     /// </summary>
-    public class ReadableStringCollection : IReadableStringCollection
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class ReadableStringCollection : IReadableStringCollection
     {
         /// <summary>
         /// Create a new wrapper
@@ -3363,7 +3443,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// A wrapper for the request Cookie header
     /// </summary>
-    public class RequestCookieCollection : IEnumerable<KeyValuePair<string, string>>
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class RequestCookieCollection : IEnumerable<KeyValuePair<string, string>>
     {
         /// <summary>
         /// Create a new wrapper
@@ -3425,7 +3510,12 @@ namespace LibOwin.Owin
     /// <summary>
     /// A wrapper for the response Set-Cookie header
     /// </summary>
-    public class ResponseCookieCollection
+#if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    class ResponseCookieCollection
     {
         /// <summary>
         /// Create a new wrapper
