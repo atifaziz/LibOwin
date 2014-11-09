@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
-namespace Microsoft.Owin.Infrastructure
+namespace Towin.Infrastructure
 {
     using System;
     using System.Collections;
@@ -874,7 +874,7 @@ namespace Microsoft.Owin.Infrastructure
     }
 }
 
-namespace Microsoft.Owin
+namespace Towin
 {
     using System;
     using System.Collections;
@@ -886,7 +886,7 @@ namespace Microsoft.Owin
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Owin.Infrastructure;
+    using Towin.Infrastructure;
 
     /// <summary>
     /// Options used to create a new cookie.

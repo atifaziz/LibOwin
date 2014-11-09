@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
-using System;
-using Xunit;
-using Xunit.Extensions;
-
-namespace Microsoft.Owin.Tests
+namespace Towin
 {
+    using System;
+    using Xunit;
+    using Xunit.Extensions;
+
     public class HostStringTests
     {
         [Theory]

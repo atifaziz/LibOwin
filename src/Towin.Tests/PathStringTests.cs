@@ -1,16 +1,13 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Shouldly;
-using Xunit;
-using Xunit.Extensions;
-
-namespace Microsoft.Owin.Tests
+namespace Towin
 {
+    using System;
+    using System.Collections.Generic;
+    using Shouldly;
+    using Xunit;
+    using Xunit.Extensions;
+
     public class PathStringTests
     {
         [Theory]

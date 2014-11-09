@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace Microsoft.Owin.Tests
+namespace Towin
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Xunit;
+
     public class HeaderTests
     {
         private const string CustomHeaderKey = "Custom-Header";

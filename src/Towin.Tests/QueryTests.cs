@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using Xunit;
-
-namespace Microsoft.Owin.Tests
+namespace Towin
 {
+    using System.Collections.Generic;
+    using Xunit;
+
     public class QueryTests
     {
         private const string QueryItemKey = "QueryItem";
