@@ -1,4 +1,9 @@
 ﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Damian Hickey. All rights reserved. See License.txt in the project root for license information.
+
+// https://github.com/damianh/LibOwin
+// Modifying this file may result in difficulties when upgrading the package.
+// All types are internal. Add a LIBOWIN_PUBLIC compilation symbol to make them public.
 
 namespace LibOwin.Owin.Infrastructure
 {
