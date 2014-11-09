@@ -11,7 +11,7 @@ namespace Microsoft.Owin
     /// </summary>
     public struct PathString : IEquatable<PathString>
     {
-        private static Func<string, string> EscapeDataString = Uri.EscapeDataString;
+        private static readonly Func<string, string> EscapeDataString = Uri.EscapeDataString;
 
         /// <summary>
         /// Represents the empty path. This field is read-only.
