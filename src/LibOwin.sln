@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Towin", "Towin\Towin.csproj", "{FEC3A29E-B94E-4843-9F63-D89FDD2EBE69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibOwin", "LibOwin\LibOwin.csproj", "{FEC3A29E-B94E-4843-9F63-D89FDD2EBE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Towin.Tests", "Towin.Tests\Towin.Tests.csproj", "{0AF835A6-8181-46DB-A17E-C765FA07A5A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibOwin.Tests", "LibOwin.Tests\LibOwin.Tests.csproj", "{0AF835A6-8181-46DB-A17E-C765FA07A5A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
