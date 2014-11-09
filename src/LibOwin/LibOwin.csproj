@@ -34,7 +34,7 @@
     <Optimize>true</Optimize>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;LIBOWIN_PUBLIC</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\LibOwin.xml</DocumentationFile>
