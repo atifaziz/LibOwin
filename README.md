@@ -1,4 +1,4 @@
-LibOwin
+LibOwin [![Build status](https://ci.appveyor.com/api/projects/status/uvrk7uy2rx99m69n?svg=true)](https://ci.appveyor.com/project/damianh/libowin)
 =====
 
 Types that help work with an owin environment primarily designed to be used internally by owin middleware and component authors. This is shipped as a dependency free nuget source package.
