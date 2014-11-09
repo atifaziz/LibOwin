@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("TOwin")]
+[assembly: AssemblyTitle("LibOwin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
@@ -25,3 +25,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("e8b2ffc1-f350-450d-a9e2-b09d2c810c55")]
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en-US")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
