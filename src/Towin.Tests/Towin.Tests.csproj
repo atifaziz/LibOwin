@@ -8,8 +8,8 @@
     <ProjectGuid>{0AF835A6-8181-46DB-A17E-C765FA07A5A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Owin.Tests</RootNamespace>
-    <AssemblyName>Microsoft.Owin.Tests</AssemblyName>
+    <RootNamespace>Towin.Tests</RootNamespace>
+    <AssemblyName>Towin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>

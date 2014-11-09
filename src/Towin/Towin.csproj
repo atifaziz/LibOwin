@@ -7,8 +7,8 @@
     <ProjectGuid>{FEC3A29E-B94E-4843-9F63-D89FDD2EBE69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Owin</RootNamespace>
-    <AssemblyName>Microsoft.Owin</AssemblyName>
+    <RootNamespace>Towin</RootNamespace>
+    <AssemblyName>Towin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
@@ -27,6 +27,7 @@
     </DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\..\build\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,8 +37,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Microsoft.Owin.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Towin.xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,84 +49,11 @@
     <Compile Include="..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CookieOptions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FormCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HeaderDictionary.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HostString.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IFormCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IHeaderDictionary.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Constants.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\OwinHelpers.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IOwinContext.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IOwinRequest.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IOwinResponse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IReadableStringCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="OwinConstants.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="OwinContext.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="OwinRequest.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="OwinResponse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PathString.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Towin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryString.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ReadableStringCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RequestCookieCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="ResponseCookieCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
