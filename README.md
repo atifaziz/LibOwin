@@ -13,3 +13,6 @@ Install via nuget:
  - This will add a single file to your project `App_Packages\LibOwin.X.Y\LibOwin.cs`.
  - The types in this will be in namespace `$rootNamespace.Owin` where `$rootNamespace` is the default root namespace of the projects.
  - All type are internal so they are not inadvertently surfaced as your public API. To make them public add `LIBOWIN_PUBLIC` compilation symbol to your project. Due to the namespace transform, your public OWIN types won't clash with the same types in another middleware / component.
+ 
+
+CI nuget feed: http://www.myget.org/f/dh
