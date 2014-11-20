@@ -12,13 +12,13 @@ namespace LibOwin.Owin.Infrastructure
     using System.Collections.Generic;
     using System.Linq;
 
-    internal static class Constants
+    internal static partial class Constants
     {
         internal const string Https = "HTTPS";
 
         internal const string HttpDateFormat = "r";
 
-        internal static class Headers
+        internal static partial class Headers
         {
             internal const string ContentType = "Content-Type";
             internal const string CacheControl = "Cache-Control";
