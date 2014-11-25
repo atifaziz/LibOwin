@@ -55,6 +55,7 @@
     <Compile Include="FormsTests.cs" />
     <Compile Include="HeaderTests.cs" />
     <Compile Include="HostStringTests.cs" />
+    <Compile Include="IOwinResponseTests.cs" />
     <Compile Include="PathStringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringTests.cs" />
