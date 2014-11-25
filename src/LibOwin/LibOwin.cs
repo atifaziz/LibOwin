@@ -887,6 +887,7 @@ namespace LibOwin.Owin
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Security.Claims;
     using System.Security.Principal;
     using System.Text;
     using System.Threading;
@@ -1721,10 +1722,10 @@ namespace LibOwin.Owin
         int? RemotePort { get; set; }
 
         /// <summary>
-        /// Gets or set the server.User.
+        /// Gets or set the owin.RequestUser (or gets server.User for non-standard implementations).
         /// </summary>
         /// <returns>The server.User.</returns>
-        IPrincipal User { get; set; }
+        ClaimsPrincipal User { get; set; }
 
         /// <summary>
         /// Asynchronously reads and parses the request body as a form.
@@ -1978,6 +1979,7 @@ namespace LibOwin.Owin
         public const string RequestProtocol = "owin.RequestProtocol";
         public const string RequestHeaders = "owin.RequestHeaders";
         public const string RequestBody = "owin.RequestBody";
+        public const string RequestUser = "owin.RequestUser"; //owin 1.0.1
 
         #endregion
 
@@ -2543,13 +2545,17 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Gets or set the server.User.
+        /// Gets or set the owin.RequestUser (or gets server.User for non-standard implementations).
         /// </summary>
         /// <returns>The server.User.</returns>
-        public virtual IPrincipal User
+        public virtual ClaimsPrincipal User
         {
-            get { return Get<IPrincipal>(OwinConstants.Security.User); }
-            set { Set(OwinConstants.Security.User, value); }
+            get
+            {
+                var claimsPrincipal = Get<ClaimsPrincipal>(OwinConstants.RequestUser);
+                return claimsPrincipal ?? Get<IPrincipal>(OwinConstants.Security.User) as ClaimsPrincipal;
+            }
+            set { Set(OwinConstants.RequestUser, value); }
         }
 
         /// <summary>
