@@ -1,8 +1,7 @@
-﻿using System;
-using Shouldly;
-
-namespace LibOwin.Owin 
+﻿namespace LibOwin.Owin 
 {
+    using System;
+    using Shouldly;
     using Xunit;
 
     public class IOwinResponseTests 
