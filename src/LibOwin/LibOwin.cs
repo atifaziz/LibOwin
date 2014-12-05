@@ -1942,7 +1942,22 @@ namespace LibOwin.Owin
         /// <returns></returns>
         string this[string key] { get; }
 
-        // Joined
+        /// <summary>
+        /// Gets the number of elements contained in the collection.
+        /// </summary>
+        int Count { get; }
+
+        /// <summary>
+        /// Gets a collection containing the keys.
+        /// </summary>
+        ICollection<string> Keys { get; }
+
+        /// <summary>
+        /// Determines whether the collection contains an element with the specified key.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool ContainsKey(string key);
 
         /// <summary>
         /// Get the associated value from the collection.  Multiple values will be merged.
@@ -1952,8 +1967,6 @@ namespace LibOwin.Owin
         /// <returns></returns>
         string Get(string key);
 
-        // Joined
-
         /// <summary>
         /// Get the associated values from the collection in their original format.
         /// Returns null if the key is not present.
@@ -1961,8 +1974,6 @@ namespace LibOwin.Owin
         /// <param name="key"></param>
         /// <returns></returns>
         IList<string> GetValues(string key);
-
-        // Raw
     }
 
     internal static class OwinConstants
@@ -3406,6 +3417,21 @@ namespace LibOwin.Owin
         public string this[string key]
         {
             get { return Get(key); }
+        }
+
+        public int Count
+        {
+            get { return Store.Count; }
+        }
+
+        public ICollection<string> Keys
+        {
+            get { return Store.Keys; }
+        }
+
+        public bool ContainsKey(string key)
+        {
+            return Store.ContainsKey(key);
         }
 
         /// <summary>
