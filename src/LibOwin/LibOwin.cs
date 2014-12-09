@@ -3653,4 +3653,28 @@ namespace LibOwin.Owin
             });
         }
     }
+
+
+    #if LIBOWIN_PUBLIC
+    public
+#else
+    internal
+#endif
+    static class IOwinResponseExtension 
+    {
+        /// <summary>
+        /// Registers for an event that fires when the response headers are sent.
+        /// </summary>
+        /// <param name="callback">The callback method.</param>
+        /// <param name="state">The callback state.</param>
+        public static void OnSendingHeaders<T>(this IOwinResponse source, Action<T> callback, T state)
+        {
+            if (source == null) {
+                throw new ArgumentNullException("source");
+            }
+            Action<object> innerCallback = innerState => callback((T)innerState);
+            source.OnSendingHeaders(innerCallback, state);
+        }
+        
+    }
 }
