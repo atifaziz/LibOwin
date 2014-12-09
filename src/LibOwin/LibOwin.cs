@@ -5,7 +5,7 @@
 // Modifying this file may result in difficulties when upgrading the package.
 // All types are internal. Add a LIBOWIN_PUBLIC compilation symbol to make them public.
 
-namespace LibOwin.Owin.Infrastructure
+namespace LibOwin.Infrastructure
 {
     using System;
     using System.Collections;
@@ -879,7 +879,7 @@ namespace LibOwin.Owin.Infrastructure
     }
 }
 
-namespace LibOwin.Owin
+namespace LibOwin
 {
     using System;
     using System.Collections;
@@ -892,7 +892,7 @@ namespace LibOwin.Owin
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using LibOwin.Owin.Infrastructure;
+    using LibOwin.Infrastructure;
 
     /// <summary>
     /// Options used to create a new cookie.
@@ -998,7 +998,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICollection<string[]> Values
         {
@@ -2068,7 +2068,7 @@ namespace LibOwin.Owin
         {
             // 3.1. Startup
             public const string Version = "opaque.Version";
-            
+
             // 3.2. Per Request
             public const string Upgrade = "opaque.Upgrade";
 
@@ -2988,7 +2988,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Provides the path string escaped in a way which is correct for combining into the URI representation. 
+        /// Provides the path string escaped in a way which is correct for combining into the URI representation.
         /// </summary>
         /// <returns>The escaped path value</returns>
         public override string ToString()
@@ -3100,7 +3100,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Adds two PathString instances into a combined PathString value. 
+        /// Adds two PathString instances into a combined PathString value.
         /// </summary>
         /// <returns>The combined PathString value</returns>
         public PathString Add(PathString other)
@@ -3109,7 +3109,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Combines a PathString and QueryString into the joined URI formatted string value. 
+        /// Combines a PathString and QueryString into the joined URI formatted string value.
         /// </summary>
         /// <returns>The joined URI formatted string value</returns>
         public string Add(QueryString other)
@@ -3224,8 +3224,8 @@ namespace LibOwin.Owin
         private readonly string _value;
 
         /// <summary>
-        /// Initalize the query string with a given value. This value must be in escaped and delimited format without 
-        /// a leading '?' character. 
+        /// Initalize the query string with a given value. This value must be in escaped and delimited format without
+        /// a leading '?' character.
         /// </summary>
         /// <param name="value">The query string to be assigned to the Value property.</param>
         public QueryString(string value)
@@ -3234,7 +3234,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Initialize a query string with a single given parameter name and value. The value is 
+        /// Initialize a query string with a single given parameter name and value. The value is
         /// </summary>
         /// <param name="name">The unencoded parameter name</param>
         /// <param name="value">The unencoded parameter value</param>
@@ -3260,7 +3260,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Provides the query string escaped in a way which is correct for combining into the URI representation. 
+        /// Provides the query string escaped in a way which is correct for combining into the URI representation.
         /// A leading '?' character will be prepended unless the Value is null or empty. Characters which are potentally
         /// dangerous are escaped.
         /// </summary>
@@ -3271,7 +3271,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// Provides the query string escaped in a way which is correct for combining into the URI representation. 
+        /// Provides the query string escaped in a way which is correct for combining into the URI representation.
         /// A leading '?' character will be prepended unless the Value is null or empty. Characters which are potentially
         /// dangerous are escaped.
         /// </summary>
@@ -3433,7 +3433,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<KeyValuePair<string, string[]>> GetEnumerator()
@@ -3442,7 +3442,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -3493,7 +3493,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
@@ -3502,7 +3502,7 @@ namespace LibOwin.Owin
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

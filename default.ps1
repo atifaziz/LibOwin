@@ -32,8 +32,8 @@ task RunTests -depends Compile {
 
 task CreatePP {
 	(Get-Content $srcDir\$projectName\LibOwin.cs) | Foreach-Object {
-		$_ -replace 'namespace LibOwin', 'namespace $rootnamespace$' `
-		-replace 'using LibOwin', 'using $rootnamespace$'
+		$_ -replace 'namespace LibOwin', 'namespace $rootnamespace$.LibOwin' `
+		-replace 'using LibOwin', 'using $rootnamespace$.LibOwin'
 		} | Set-Content $buildOutputDir\LibOwin.cs.pp
 }
 
