@@ -539,20 +539,19 @@ namespace LibOwin.Owin.Infrastructure
 
         private static readonly char[] SemicolonAndComma = new[] { ';', ',' };
 
-        internal static IDictionary<string, string> GetCookies(IOwinRequest request)
+        internal static IReadableStringCollection GetCookies(IOwinRequest request)
         {
-            var cookies = request.Get<IDictionary<string, string>>("Microsoft.Owin.Cookies#dictionary");
+            var cookies = request.Get<RequestCookiesCollection>("Microsoft.Owin.Cookies#dictionary");
             if (cookies == null)
             {
-                cookies = new Dictionary<string, string>(StringComparer.Ordinal);
-                request.Set("Microsoft.Owin.Cookies#dictionary", cookies);
+                cookies = new RequestCookiesCollection();
+                request.Set("LibOwin.Cookies#RequestCookieCollection", cookies);
             }
 
             string text = GetHeader(request.Headers, "Cookie");
             if (request.Get<string>("Microsoft.Owin.Cookies#text") != text)
             {
-                cookies.Clear();
-                ParseDelimited(text, SemicolonAndComma, AddCookieCallback, cookies);
+                cookies.Reparse(text);
                 request.Set("Microsoft.Owin.Cookies#text", text);
             }
             return cookies;
@@ -1581,6 +1580,7 @@ namespace LibOwin.Owin
         /// Gets the OWIN environment.
         /// </summary>
         /// <returns>The OWIN environment.</returns>
+// ReSharper disable once ReturnTypeCanBeEnumerable.Global
         IDictionary<string, object> Environment { get; }
 
         /// <summary>
@@ -1659,7 +1659,7 @@ namespace LibOwin.Owin
         /// Gets the collection of Cookies for this request.
         /// </summary>
         /// <returns>The collection of Cookies for this request.</returns>
-        RequestCookieCollection Cookies { get; }
+        IReadableStringCollection Cookies { get; }
 
         /// <summary>
         /// Gets or sets the Content-Type header.
@@ -2402,9 +2402,9 @@ namespace LibOwin.Owin
         /// Gets the collection of Cookies for this request.
         /// </summary>
         /// <returns>The collection of Cookies for this request.</returns>
-        public RequestCookieCollection Cookies
+        public IReadableStringCollection Cookies
         {
-            get { return new RequestCookieCollection(OwinHelpers.GetCookies(this)); }
+            get { return OwinHelpers.GetCookies(this); }
         }
 
         /// <summary>
@@ -3477,63 +3477,139 @@ namespace LibOwin.Owin
         }
     }
 
-    /// <summary>
-    /// A wrapper for the request Cookie header
-    /// </summary>
 #if LIBOWIN_PUBLIC
     public
 #else
     internal
 #endif
-    class RequestCookieCollection : IEnumerable<KeyValuePair<string, string>>
+    class RequestCookiesCollection : IReadableStringCollection
     {
-        /// <summary>
-        /// Create a new wrapper
-        /// </summary>
-        /// <param name="store"></param>
-        public RequestCookieCollection(IDictionary<string, string> store)
-        {
-            if (store == null)
-            {
-                throw new ArgumentNullException("store");
-            }
+        private readonly IDictionary<string, string> _dictionary;
 
-            Store = store;
+        public RequestCookiesCollection()
+        {
+            _dictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
 
-        private IDictionary<string, string> Store { get; set; }
+        public string this[string key]
+        {
+            get { return Get(key); }
+        }
 
         /// <summary>
-        /// Returns null rather than throwing KeyNotFoundException
+        /// Gets the number of elements contained in the collection.
+        /// </summary>
+        public int Count
+        {
+            get { return _dictionary.Count; }
+        }
+
+        /// <summary>
+        /// Gets a collection containing the keys.
+        /// </summary>
+        public ICollection<string> Keys
+        {
+            get { return _dictionary.Keys; }
+        }
+
+        /// <summary>
+        /// Determines whether the collection contains an element with the specified key.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string this[string key]
+        public bool ContainsKey(string key)
         {
-            get
-            {
-                string value;
-                Store.TryGetValue(key, out value);
-                return value;
-            }
+            return _dictionary.ContainsKey(key);
         }
 
         /// <summary>
-        /// 
+        /// Get the associated value from the collection.  Multiple values will be merged.
+        /// Returns null if the key is not present.
         /// </summary>
+        /// <param name="key"></param>
         /// <returns></returns>
-        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+        public string Get(string key)
         {
-            return Store.GetEnumerator();
+            string value;
+            return _dictionary.TryGetValue(key, out value) ? value : null;
         }
 
         /// <summary>
-        /// 
+        /// Get the associated values from the collection in their original format.
+        /// Returns null if the key is not present.
         /// </summary>
+        /// <param name="key"></param>
         /// <returns></returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        public IList<string> GetValues(string key)
+        {
+            string value;
+            return _dictionary.TryGetValue(key, out value) ? new[] { value } : null;
+        }
+
+        private static readonly char[] SemicolonAndComma = { ';', ',' };
+
+        public void Reparse(string cookiesHeader)
+        {
+            _dictionary.Clear();
+            ParseDelimited(cookiesHeader, SemicolonAndComma, AddCookieCallback, _dictionary);
+        }
+
+        public IEnumerator<KeyValuePair<string, string[]>> GetEnumerator()
+        {
+            return _dictionary.Select(pair => new KeyValuePair<string, string[]>(pair.Key, new[] { pair.Value })).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private static readonly Action<string, string, object> AddCookieCallback = (name, value, state) =>
+        {
+            var dictionary = (IDictionary<string, string>)state;
+            if (!dictionary.ContainsKey(name))
+            {
+                dictionary.Add(name, value);
+            }
+        };
+
+        // From Microsoft.AspNet.PipelineCore.Infrastructure.ParsingHelpers
+        private static void ParseDelimited(string text, char[] delimiters, Action<string, string, object> callback, object state)
+        {
+            int textLength = text.Length;
+            int equalIndex = text.IndexOf('=');
+            if (equalIndex == -1)
+            {
+                equalIndex = textLength;
+            }
+            int scanIndex = 0;
+            while (scanIndex < textLength)
+            {
+                int delimiterIndex = text.IndexOfAny(delimiters, scanIndex);
+                if (delimiterIndex == -1)
+                {
+                    delimiterIndex = textLength;
+                }
+                if (equalIndex < delimiterIndex)
+                {
+                    while (scanIndex != equalIndex && char.IsWhiteSpace(text[scanIndex]))
+                    {
+                        ++scanIndex;
+                    }
+                    string name = text.Substring(scanIndex, equalIndex - scanIndex);
+                    string value = text.Substring(equalIndex + 1, delimiterIndex - equalIndex - 1);
+                    callback(
+                        Uri.UnescapeDataString(name.Replace('+', ' ')),
+                        Uri.UnescapeDataString(value.Replace('+', ' ')),
+                        state);
+                    equalIndex = text.IndexOf('=', delimiterIndex);
+                    if (equalIndex == -1)
+                    {
+                        equalIndex = textLength;
+                    }
+                }
+                scanIndex = delimiterIndex + 1;
+            }
         }
     }
 
