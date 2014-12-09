@@ -3665,15 +3665,16 @@ namespace LibOwin
         /// <summary>
         /// Registers for an event that fires when the response headers are sent.
         /// </summary>
+        /// <param name="response">The owin response</param>
         /// <param name="callback">The callback method.</param>
         /// <param name="state">The callback state.</param>
-        public static void OnSendingHeaders<T>(this IOwinResponse source, Action<T> callback, T state)
+        public static void OnSendingHeaders<T>(this IOwinResponse response, Action<T> callback, T state)
         {
-            if (source == null) {
-                throw new ArgumentNullException("source");
+            if (response == null) {
+                throw new ArgumentNullException("response");
             }
             Action<object> innerCallback = innerState => callback((T)innerState);
-            source.OnSendingHeaders(innerCallback, state);
+            response.OnSendingHeaders(innerCallback, state);
         }
         
     }
